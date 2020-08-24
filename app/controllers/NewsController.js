@@ -12,12 +12,14 @@ exports.create = (req, res) => {
   // Create a Blog
   const news = new News({
     title: req.body.title,
+    slug: req.body.slug,
     description: req.body.description,
     image: req.file.path,
   });
 
   // Save News in a database
-  News.save(news)
+  news
+    .save(news)
     .then((data) => {
       res.send(data);
     })
@@ -28,9 +30,9 @@ exports.create = (req, res) => {
     });
 };
 exports.findAll = (req, res) => {
-  const title = req.query.title;
+  const title = req.params.title;
   var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
-  News.findAll({ where: condition })
+  News.findAll({ where: condition, include: ["comments"] })
     .then((data) => {
       res.send(data);
     })
@@ -41,9 +43,7 @@ exports.findAll = (req, res) => {
     });
 };
 exports.findOne = (req, res) => {
-  const id = req.params.id;
-
-  News.findByPk(id)
+  News.findOne({ title: req.params.title })
     .then((data) => {
       res.send(data);
     })
@@ -92,22 +92,23 @@ exports.delete = (req, res) => {
 
   News.destroy({
     where: { id: id },
-  });
-  then((num) => {
-    if (num == 1) {
-      res.send({
-        message: "News was deleted successfully!",
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "News was deleted successfully!",
+        });
+      } else {
+        res.send({
+          message: `Cannot delete News with id=${id}. Maybe News was not found!`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Could not delete News with id=" + id,
       });
-    } else {
-      res.send({
-        message: `Cannot delete News with id=${id}. Maybe News was not found!`,
-      });
-    }
-  }).catch((err) => {
-    res.status(500).send({
-      message: "Could not delete News with id=" + id,
     });
-  });
 };
 exports.deleteAll = (req, res) => {
   News.destroy({

@@ -20,5 +20,12 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.news = require("./News.js")(sequelize, Sequelize);
+db.comments = require("./Comments.js")(sequelize, Sequelize);
+
+db.news.hasMany(db.comments, { as: "comments" });
+db.comments.belongsTo(db.news, {
+  foreignKey: "newsId",
+  as: "news",
+});
 
 module.exports = db;
