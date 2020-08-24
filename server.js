@@ -16,10 +16,13 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use("/uploads", express.static("uploads"));
+
 const db = require("./app/models");
 db.sequelize.sync();
 
 require("./app/routes/News")(app);
+require("./app/routes/Comments")(app);
 
 // simple route
 app.get("/", (req, res) => {
