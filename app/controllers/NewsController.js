@@ -14,7 +14,7 @@ exports.create = (req, res) => {
     title: req.body.title,
     slug: req.body.slug,
     description: req.body.description,
-    image: req.file.path,
+    image: req.file,
   });
 
   // Save News in a database
