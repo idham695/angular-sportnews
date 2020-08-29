@@ -22,11 +22,11 @@ export class NewsService {
     return this.http.post(baseUrl, data);
   }
 
-  update(data, id): Observable<any> {
-    return this.http.put(baseUrl, id, data);
+  update(id, data): Observable<any> {
+    return this.http.put(`${baseUrl}/${id}`, data);
   }
 
   delete(id): Observable<any> {
-    return this.http.delete(baseUrl, id);
+    return this.http.delete(`${baseUrl}/${id}`);
   }
 }
