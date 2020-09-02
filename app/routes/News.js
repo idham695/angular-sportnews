@@ -29,7 +29,7 @@ module.exports = (app) => {
   });
 
   // Create a new News
-  router.post("/", upload.single("image"), news.create);
+  router.post("/", upload.single("file"), news.create);
 
   // Retrieve all News
   router.get("/", news.findAll);

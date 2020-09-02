@@ -14,8 +14,9 @@ exports.create = (req, res) => {
     title: req.body.title,
     slug: req.body.slug,
     description: req.body.description,
-    image: req.file,
+    image: "http://localhost:3000/uploads/news/" + req.file.filename,
   });
+  console.log(news.image);
 
   // Save News in a database
   news
