@@ -1,13 +1,22 @@
-<div>
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">Idham Kholid</a>
-    <div class="navbar-nav ml-auto">
-      <a href="" class="nav-item nav-link" routerLink="news">News</a>
-      <a href="" class="nav-item nav-link" routerLink="add">Add News</a>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="over" [(opened)]="opened">sidenav</mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar fixed color="primary">
+      <button
+        mat-icon-button
+        (click)="opened = !opened"
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Sportnews</span>
+      <span class="example-spacer"></span>
+      <span>Add</span>
+    </mat-toolbar>
+    <div class="content">
+      <router-outlet></router-outlet>
     </div>
-  </nav>
-
-  <div class="container mt-3">
-    <router-outlet></router-outlet>
-  </div>
-</div>
+    <div class="footer">&copy; All right reserved by SportNews</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

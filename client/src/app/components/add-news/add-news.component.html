@@ -1,79 +1,77 @@
-<div style="width: 400px; margin: auto">
-  <div class="submit-form">
-    <div *ngIf="!submitted">
-      <div class="example-loading-shade" *ngIf="submitted">
-        <mat-spinner *ngIf="submitted"></mat-spinner>
-      </div>
-      <form [formGroup]="newsForm" (ngSubmit)="saveNews()">
-        <mat-form-field class="example-full-width">
-          <mat-label>Image</mat-label>
-          <ngx-mat-file-input
-            formControlName="image"
-            placeholder="Select Image"
-            valuePlaceholder="No image file selected"
-            [errorStateMatcher]="matcher"
-          ></ngx-mat-file-input>
-          <mat-icon matSuffix>folder</mat-icon>
-          <mat-error>
-            <span *ngIf="!newsForm.get('image').valid"
-              >Please select image file</span
-            >
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <mat-label>Title</mat-label>
-          <input
-            matInput
-            placeholder="Title"
-            formControlName="title"
-            [errorStateMatcher]="matcher"
-          />
-          <mat-error>
-            <span
-              *ngIf="
-                !newsForm.get('title').valid && newsForm.get('title').touched
-              "
-              >Please enter Title</span
-            >
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <mat-label>Slug</mat-label>
-          <input
-            matInput
-            placeholder="Slug"
-            formControlName="slug"
-            [errorStateMatcher]="matcher"
-          />
-          <mat-error>
-            <span
-              *ngIf="
-                !newsForm.get('slug').valid && newsForm.get('slug').touched
-              "
-              >Please enter Slug</span
-            >
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <mat-label>Description</mat-label>
-          <input
-            matInput
-            placeholder="Description"
-            formControlName="description"
-            [errorStateMatcher]="matcher"
-          />
-          <mat-error>
-            <span
-              *ngIf="
-                !newsForm.get('description').valid &&
-                newsForm.get('description').touched
-              "
-              >Please enter Description</span
-            >
-          </mat-error>
-        </mat-form-field>
-        <button type="submit" class="btn btn-success">Submit</button>
-      </form>
+<div class="submit-form">
+  <div *ngIf="!submitted">
+    <div class="example-loading-shade" *ngIf="submitted">
+      <mat-spinner *ngIf="submitted"></mat-spinner>
     </div>
+    <form [formGroup]="newsForm" (ngSubmit)="saveNews()">
+      <mat-form-field class="example-full-width">
+        <mat-label>Title</mat-label>
+        <input
+          matInput
+          placeholder="Title"
+          formControlName="title"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error>
+          <span
+            *ngIf="
+              !newsForm.get('title').valid && newsForm.get('title').touched
+            "
+            >Please enter Title</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Slug</mat-label>
+        <input
+          matInput
+          placeholder="Slug"
+          formControlName="slug"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error>
+          <span
+            *ngIf="!newsForm.get('slug').valid && newsForm.get('slug').touched"
+            >Please enter Slug</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Description</mat-label>
+        <input
+          matInput
+          placeholder="Description"
+          formControlName="description"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error>
+          <span
+            *ngIf="
+              !newsForm.get('description').valid &&
+              newsForm.get('description').touched
+            "
+            >Please enter Description</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Image</mat-label>
+        <ngx-mat-file-input
+          formControlName="image"
+          placeholder="Select Image"
+          valuePlaceholder="No image file selected"
+          [errorStateMatcher]="matcher"
+        ></ngx-mat-file-input>
+        <mat-icon matSuffix>folder</mat-icon>
+        <mat-error>
+          <span *ngIf="!newsForm.get('image').valid"
+            >Please select image file</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <button type="submit" class="button" mat-raised-button color="primary">
+        Submit
+      </button>
+    </form>
   </div>
 </div>

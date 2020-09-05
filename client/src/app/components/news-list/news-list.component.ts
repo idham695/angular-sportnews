@@ -8,8 +8,6 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class NewsListComponent implements OnInit {
   news: any;
-  currentNews = null;
-  currentIndex = -1;
 
   constructor(private newsService: NewsService) {}
 
@@ -31,12 +29,5 @@ export class NewsListComponent implements OnInit {
 
   refreshList(): void {
     this.getAllNews();
-    this.currentNews = null;
-    this.currentIndex = -1;
-  }
-
-  setActiveNews(news, index): void {
-    this.currentNews = news;
-    this.currentIndex = index;
   }
 }

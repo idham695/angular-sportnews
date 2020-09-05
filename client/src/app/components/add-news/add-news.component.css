@@ -11,6 +11,7 @@
 
 .example-full-width {
   width: 100%;
+  margin-top: 20px;
 }
 
 .example-full-width:nth-last-child(0) {
@@ -23,4 +24,8 @@
 
 .mat-flat-button {
   margin: 5px;
+}
+
+.button {
+  margin-top: 30px;
 }
