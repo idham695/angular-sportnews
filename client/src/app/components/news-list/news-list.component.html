@@ -1,16 +1,22 @@
 <div *ngFor="let news of news">
   <mat-card class="example-card">
+    <img mat-card-image src="{{ news.image }}" />
     <mat-card-header>
       <mat-card-title>{{ news.title }}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image src="{{ news.image }}" />
     <mat-card-content>
       <p>
         {{ news.description }}
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <a href="news/{{ news.id }}">Lihat Berita</a>
+      <a
+        class="button"
+        mat-raised-button
+        color="primary"
+        href="news/{{ news.id }}"
+        >Lihat Berita</a
+      >
     </mat-card-actions>
   </mat-card>
 </div>
