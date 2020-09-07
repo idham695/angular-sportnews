@@ -34,28 +34,14 @@ export class NewsDetailsComponent implements OnInit {
     );
   }
 
-  selectImage(event): void {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.currentNews.image = file;
-    }
-  }
-
   updateNews(): void {
-    this.newsService.update(this.currentNews.id, this.currentNews).subscribe(
-      (response) => {
-        console.log(response);
-        this.message = 'Update news berhasil';
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.router.navigate(['update/', this.currentNews.id]);
   }
 
   deleteNews(): void {
     this.newsService.delete(this.currentNews.id).subscribe(
       (response) => {
+        this.router.navigate(['news']);
         console.log(response);
       },
       (error) => {

@@ -18,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { UpdateNewsComponent } from './components/update-news/update-news.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     AddNewsComponent,
     NewsListComponent,
     NewsDetailsComponent,
+    UpdateNewsComponent,
   ],
   imports: [
     BrowserModule,

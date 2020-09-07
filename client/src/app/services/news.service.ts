@@ -53,8 +53,13 @@ export class NewsService {
     return this.http.request(req);
   }
 
-  update(id, data): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
+  update(id, news: News, file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('title', news.title);
+    formData.append('slug', news.slug);
+    formData.append('description', news.description);
+    return this.http.put(`${baseUrl}/${id}`, formData);
   }
 
   delete(id): Observable<any> {

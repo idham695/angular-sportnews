@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from 'src/app/services/news.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   FormControl,
   FormGroupDirective,
@@ -26,23 +26,37 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-  selector: 'app-add-news',
-  templateUrl: './add-news.component.html',
-  styleUrls: ['./add-news.component.css'],
+  selector: 'app-update-news',
+  templateUrl: './update-news.component.html',
+  styleUrls: ['./update-news.component.css'],
 })
-export class AddNewsComponent implements OnInit {
+export class UpdateNewsComponent implements OnInit {
   newsForm: FormGroup;
   image: File = null;
   title = '';
   slug = '';
   description = '';
-
+  currentNews = null;
   submitted = false;
+  message = '';
   constructor(
     private newsService: NewsService,
-    private formBuilder: FormBuilder,
-    private router: Router
+    private route: ActivatedRoute,
+    private router: Router,
+    private formBuilder: FormBuilder
   ) {}
+
+  getNews(id): void {
+    this.newsService.get(id).subscribe(
+      (data) => {
+        this.currentNews = data;
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
   ngOnInit(): void {
     this.newsForm = this.formBuilder.group({
@@ -51,14 +65,20 @@ export class AddNewsComponent implements OnInit {
       slug: [null, Validators.required],
       description: [null, Validators.required],
     });
+    this.getNews(this.route.snapshot.paramMap.get('id'));
   }
-  saveNews(): void {
+  updateNews(): void {
     this.newsService
-      .create(this.newsForm.value, this.newsForm.get('image').value._files[0])
+      .update(
+        this.currentNews.id,
+        this.newsForm.value,
+        this.newsForm.get('image').value._files[0]
+      )
       .subscribe(
         (response) => {
-          this.submitted = true;
+          console.log(response);
           this.router.navigate(['news']);
+          this.submitted = true;
         },
         (error) => {
           console.log(error);
