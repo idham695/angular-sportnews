@@ -64,7 +64,7 @@ exports.update = (req, res) => {
   const id = req.params.id;
 
   if (req.file) {
-    const image = req.file.path;
+    const image = "http://localhost:3000/uploads/news/" + req.file.filename;
     req.body.image = image;
   }
 

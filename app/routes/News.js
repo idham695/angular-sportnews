@@ -38,7 +38,7 @@ module.exports = (app) => {
   router.get("/:id", news.findOne);
 
   // Update a News with id
-  router.put("/:id", upload.single("image"), news.update);
+  router.put("/:id", upload.single("file"), news.update);
 
   // Delete a News with id
   router.delete("/:id", news.delete);
