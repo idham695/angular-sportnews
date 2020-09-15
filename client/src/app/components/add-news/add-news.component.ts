@@ -10,6 +10,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { CategoriesService } from 'src/app/services/categories.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -31,17 +32,20 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./add-news.component.css'],
 })
 export class AddNewsComponent implements OnInit {
+  categories: any;
   newsForm: FormGroup;
   image: File = null;
   title = '';
   slug = '';
   description = '';
+  categoryId = '';
 
   submitted = false;
   constructor(
     private newsService: NewsService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private categoriesService: CategoriesService
   ) {}
 
   ngOnInit(): void {
@@ -50,8 +54,22 @@ export class AddNewsComponent implements OnInit {
       title: [null, Validators.required],
       slug: [null, Validators.required],
       description: [null, Validators.required],
+      categoryId: [null, Validators.required],
     });
+    this.getAllCategrories();
   }
+
+  getAllCategrories(): void {
+    this.categoriesService.getAll().subscribe(
+      (data) => {
+        this.categories = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
   saveNews(): void {
     this.newsService
       .create(this.newsForm.value, this.newsForm.get('image').value._files[0])

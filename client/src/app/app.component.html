@@ -1,5 +1,9 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav mode="over" [(opened)]="opened">sidenav</mat-sidenav>
+  <mat-sidenav #sidenav mode="over" [(opened)]="opened">
+    <mat-nav-list *ngFor="let category of categories">
+      <a mat-list-item href="" class="list">{{ category.name }}</a>
+    </mat-nav-list>
+  </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar fixed color="primary">
       <button

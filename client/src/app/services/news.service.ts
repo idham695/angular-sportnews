@@ -8,6 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { News } from '../news';
+import { NumberInput } from '@angular/cdk/coercion';
 const baseUrl = 'http://localhost:3000/api/news';
 
 @Injectable({
@@ -41,6 +42,7 @@ export class NewsService {
     formData.append('title', news.title);
     formData.append('slug', news.slug);
     formData.append('description', news.description);
+    formData.append('categoryId', news.categoryId);
     const header = new HttpHeaders();
     const params = new HttpParams();
 

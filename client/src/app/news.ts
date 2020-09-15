@@ -3,4 +3,5 @@ export class News {
   slug: string;
   description: string;
   image: string;
+  categoryId: string;
 }

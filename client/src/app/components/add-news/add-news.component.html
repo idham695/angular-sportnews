@@ -21,6 +21,24 @@
           >
         </mat-error>
       </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Category News</mat-label>
+        <mat-select formControlName="categoryId" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+          <span
+            *ngIf="
+              !newsForm.get('categoryId').valid &&
+              newsForm.get('categoryId').touched
+            "
+            >Please enter Category</span
+          >
+        </mat-error>
+      </mat-form-field>
       <mat-form-field class="example-full-width">
         <mat-label>Slug</mat-label>
         <input

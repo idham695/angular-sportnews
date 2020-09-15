@@ -19,6 +19,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { UpdateNewsComponent } from './components/update-news/update-news.component';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { UpdateNewsComponent } from './components/update-news/update-news.compon
     MaterialFileInputModule,
     MatToolbarModule,
     MatSidenavModule,
+    MatListModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
