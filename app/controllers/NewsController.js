@@ -14,6 +14,7 @@ exports.create = (req, res) => {
     title: req.body.title,
     slug: req.body.slug,
     description: req.body.description,
+    categoryId: req.body.categoryId,
     image: "http://localhost:3000/uploads/news/" + req.file.filename,
   });
   console.log(news.image);
